@@ -1,17 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 class Program
 {
-    const int TetrisWidth = 10;
+    const int TetrisWidth = 30;
     const int TetrisHeight = 16;
     const int InfoPanelWidth = 10;
-    const int GameWidth = TetrisWidth +
-        InfoPanelWidth + 3;
+    const int GameWidth = TetrisWidth +        InfoPanelWidth + 3;
     const int GameHeight = TetrisHeight + 2;
     const char BorderCharacter = (char)219;
     static int Score = 0;
@@ -67,8 +64,7 @@ class Program
     static int currentFigureCol = 4;
     static bool[,] nextFigure;
     static Random random = new Random();
-    static bool[,] gameState = new bool[
-        TetrisHeight, TetrisWidth];
+    static bool[,] gameState = new bool[TetrisHeight, TetrisWidth];
     static int[] scorePerLines = { 10, 30, 50, 80 };
     static int[] speedPerLevel = { 800, 700, 600, 500, 400, 300, 200, 100, 50 };
 
@@ -93,7 +89,7 @@ class Program
             }
         });
 
-        while(true)
+        while (true)
         {
             if (Console.KeyAvailable)
             {
@@ -123,9 +119,9 @@ class Program
                 {
                     Score += scorePerLines[removedLines - 1] * Level;
                 }
-                
+
                 Level = Score / 1000 + 1;
-                
+
                 currentFigure = nextFigure;
                 nextFigure = Figures[random.Next(0, Figures.Length)];
                 currentFigureRow = 1;
@@ -201,7 +197,7 @@ class Program
             {
                 var row = currentFigureRow - 1 + figRow;
                 var col = currentFigureCol - 1 + figCol;
-                
+
                 if (currentFigure[figRow, figCol])
                 {
                     gameState[row, col] = true;
@@ -232,7 +228,7 @@ class Program
                 {
                     continue;
                 }
-                
+
                 if (gameState[row, col] == true &&
                     currentFigure[figRow, figCol] == true)
                 {
